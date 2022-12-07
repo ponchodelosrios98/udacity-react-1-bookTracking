@@ -31,7 +31,6 @@ const BookShelf = ({
                           }}
                         >
                           <option
-                            value="none"
                             disabled
                           >
                             Move to...
