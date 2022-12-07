@@ -14,12 +14,12 @@ export const get = (bookId) =>
     .then((res) => res.json())
     .then((data) => data.book);
 
-export const getAll = () =>
+export const getAllBooks = () =>
   fetch(`${api}/books`, { headers })
     .then((res) => res.json())
     .then((data) => data.books);
 
-export const update = (book, shelf) =>
+export const updateBookShelf = (book, shelf) =>
   fetch(`${api}/books/${book.id}`, {
     method: "PUT",
     headers: {
@@ -29,7 +29,7 @@ export const update = (book, shelf) =>
     body: JSON.stringify({ shelf }),
   }).then((res) => res.json());
 
-export const search = (query, maxResults) =>
+export const fetchOneBook = (query, maxResults) =>
   fetch(`${api}/search`, {
     method: "POST",
     headers: {
