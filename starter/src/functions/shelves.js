@@ -29,3 +29,17 @@ export const reorganizeShelfs = (selectedBook, shelfs, selectedShelf) => {
   return newShelfs;
 };
 
+export const decideSearchShelf = (shelfs, idTitle) => {
+  let currentShelf = 'none';
+  let activeShelfs = Object.keys(shelfs);
+
+  activeShelfs.forEach((shelf) => {
+    shelfs[shelf].forEach((book) => {
+      if (book.id === idTitle) {
+        currentShelf = book.shelf;
+      }
+    });
+  })
+
+  return currentShelf;
+};

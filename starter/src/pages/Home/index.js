@@ -1,6 +1,8 @@
+import PropTypes from 'prop-types';
+import { Link } from "react-router-dom";
+
 import PageTitle from "./../../components/navigation/PageTitle";
 import BookShelf from "./../../components/modules/Bookshelf";
-import { Link } from "react-router-dom";
 
 const Home = ({
   books,
@@ -57,5 +59,10 @@ const Home = ({
     </div>
   );
 }
+
+Home.propTypes = {
+  books: PropTypes.object,
+  updateBook: PropTypes.func,
+};
 
 export default Home;

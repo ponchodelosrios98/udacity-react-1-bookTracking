@@ -2,10 +2,11 @@ import "./App.css";
 import { useEffect, useState } from "react";
 import { Route, Routes } from "react-router-dom";
 
-import Search from "./pages/Search";
-import Home from "./pages/Home";
 import { organizeBooks, reorganizeShelfs } from "./functions/shelves";
 import { fetchOneBook, getAllBooks, updateBookShelf } from "./BooksAPI";
+
+import Search from "./pages/Search";
+import Home from "./pages/Home";
 
 const App = () => {
   const [books, setBooks] = useState({
@@ -24,14 +25,16 @@ const App = () => {
   };
 
   const searchOneBook = async (textInput) => {
-    const res = await fetchOneBook(textInput, 20);
-    setSearchInput(textInput);
-
-    if (!res || res.error) {
-      return setResults([]);
-    }
-
-    setResults(res);
+    setTimeout(async () => {
+      const res = await fetchOneBook(textInput, 20);
+      setSearchInput(textInput);
+  
+      if (!res || res.error) {
+        return setResults([]);
+      }
+  
+      setResults(res);
+    }, 500)
   };
 
   const updateBook = async (book, shelf) => {
@@ -68,6 +71,7 @@ const App = () => {
               searchOneBook={searchOneBook}
               searchResults={searchResults || []}
               updateBook={updateBook}
+              shelfs={books}
               legacySearch={searchInputField}
             />
           }

@@ -1,11 +1,16 @@
+import PropTypes from 'prop-types';
 import { Link } from "react-router-dom";
+
 import BookShelf from "../../components/modules/Bookshelf";
+
+import { decideSearchShelf } from "../../functions/shelves";
 
 const Search = ({
   searchOneBook,
   searchResults,
   legacySearch,
   updateBook,
+  shelfs,
 }) => {
   const handleSearch = (textInput) => {
     searchOneBook(textInput);
@@ -48,7 +53,7 @@ const Search = ({
                     key: book.id,
                     backgroundImage,
                     authors: book.authors,
-                    shelf: 'none',
+                    shelf: decideSearchShelf(shelfs, book.id),
                   });
                 })}
                 updateBook={updateBook}
@@ -61,5 +66,13 @@ const Search = ({
     </div>
   );
 }
+
+Search.propTypes = {
+  searchOneBook: PropTypes.func,
+  searchResults: PropTypes.array,
+  legacySearch: PropTypes.string,
+  updateBook: PropTypes.func,
+  shelfs: PropTypes.object,
+};
 
 export default Search;
